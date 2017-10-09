@@ -4,7 +4,7 @@ function make(Schema, mongoose, app) {
 	
 	console.log(Schema+mongoose);
 	app.get('/updateadmin',function(req,res){
-  res.sendfile("demos/admin/updateadmin.html");
+  res.sendfile("areleo/admin/updateadmin.html");
 });
 	
 	
@@ -14,65 +14,65 @@ function make(Schema, mongoose, app) {
 function makedata(Schema, mongoose, app) {
     // Define Car model
 app.get('/',function(req,res){
-  res.sendfile("demos/loginr.html");
+  res.sendfile("areleo/index.html");
 });
 		
 app.get('/login',function(req,res){
-  res.sendfile("demos/loginr.html");
+  res.sendfile("areleo/loginr.html");
 });
 
 app.get('/testdata',function(req,res){
-  res.sendfile("demos/test.html");
+  res.sendfile("areleo/test.html");
 });	
 
 app.get('/create',function(req,res){
-  res.sendfile("demos/create.html");
+  res.sendfile("areleo/create.html");
 });
 
 app.get('/update',function(req,res){
-  res.sendfile("demos/update.html");
+  res.sendfile("areleo/update.html");
 });
 
 app.get('/delete',function(req,res){
-  res.sendfile("demos/delete.html");
+  res.sendfile("areleo/delete.html");
 });
 
 app.get('/insertdata',function(req,res){
-  res.sendfile("demos/insert.html");
+  res.sendfile("areleo/insert.html");
 });
 
 app.get('/updatedata',function(req,res){
-  res.sendfile("demos/update.html");
+  res.sendfile("areleo/update.html");
 });
 
 app.get('/deletedata',function(req,res){
-  res.sendfile("demos/delete.html");
+  res.sendfile("areleo/delete.html");
 });
 
 //admin
 app.get('/createadmin',function(req,res){
-  res.sendfile("demos/admin/createadmin.html");
+  res.sendfile("areleo/admin/createadmin.html");
 });
 
 app.get('/readadminr',function(req,res){
-  res.sendfile("demos/admin/readadmin.html");
+  res.sendfile("areleo/admin/readadmin.html");
 });	
 
 app.get('/updateadmin',function(req,res){
-  res.sendfile("demos/admin/updateadmin.html");
+  res.sendfile("areleo/admin/updateadmin.html");
 });
 
 app.get('/deleteadmin',function(req,res){
-  res.sendfile("demos/admin/deleteadmin.html");
+  res.sendfile("areleo/admin/deleteadmin.html");
 });
 
 
 app.get('/createuseradmin',function(req,res){
-  res.sendfile("demos/admin/createuseradmin.html");
+  res.sendfile("areleo/admin/createuseradmin.html");
 });
 
 app.get('/loginadmin',function(req,res){
-  res.sendfile("demos/admin/loginadmin.html");
+  res.sendfile("areleo/admin/loginadmin.html");
 });
 
 
@@ -80,7 +80,7 @@ app.get('/loginadmin',function(req,res){
 
 
 app.get('/dashboardadmin',function(req,res){
-  res.sendfile("demos/admin/dashboard.html");
+  res.sendfile("areleo/admin/dashboard.html");
 });
 
 

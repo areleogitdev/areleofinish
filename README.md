@@ -380,5 +380,3 @@ If you've additional plugins, you can update this list.
 ## License
 
 [RTCMultiConnection](https://github.com/muaz-khan/RTCMultiConnection) is released under [MIT licence](https://github.com/muaz-khan/RTCMultiConnection/blob/master/LICENSE.md) . Copyright (c) [Muaz Khan](http://www.MuazKhan.com/).
-# areleofinish
-# areleofinish

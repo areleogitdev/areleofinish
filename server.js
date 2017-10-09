@@ -71,11 +71,34 @@ app.get('/rtc',function(req,res){
 		console.log("Not Login");
 		res.redirect('/login');
 	}else {
-		res.sendfile("demos/Video-Conferencing.html");
+		res.sendfile("areleo/Video-Conferencing.html");
 	}
     
 });
 
+app.get('/smartglass',function(req,res){
+
+    if(typeof req.session.uniqueId == "undefined") {
+		console.log("Not Login");
+		res.redirect('/login');
+	}else {
+		res.sendfile("areleo/Smartglases.html");
+	}
+    
+});
+
+app.get('/chatsharing',function(req,res){
+
+    if(typeof req.session.uniqueId == "undefined") {
+		console.log("Not Login");
+		res.redirect('/login');
+	}else {
+		res.sendfile("areleo/TextChat+FileSharing.html");
+	}
+    
+});
+
+global.globalString = "yongky"; 
 
 
 app.post('/login', function(req, res) {
@@ -90,6 +113,8 @@ app.post('/login', function(req, res) {
   var query = { NAME: NAME, PASSWORD: PASSWORD };
   db.collection("login").find(query).toArray(function(err, result) {
     //console.log("data" + req.session.uniqueId +"data" );
+	 
+	//global.globalString = NAME; 
 	
 	
             if (1 > result.length) { 
@@ -151,12 +176,8 @@ MongoClient.connect(urldb, function(err, db) {
 });  
 
 });
+
 //read
-
-
-
-
-
 app.get('/userdata', function(req, res, next) {
   //res.json({ message: 'Hello World', message1: 'Hello World 1' });
 		NAME = req.session.uniqueId;
@@ -175,20 +196,10 @@ app.get('/userdata', function(req, res, next) {
    
 });
 
-
-
 app.get('/id_user', function(req, res, next) {
 		NAME = req.session.uniqueId;
-
-	res.json({ message: NAME });
-
-
-
-   
+	res.json({ message: NAME });  
 });
-
-
-
 
 app.get('/test', function(req, res, next) {
   //res.json({ message: 'Hello World', message1: 'Hello World 1' });
@@ -206,9 +217,6 @@ app.get('/test', function(req, res, next) {
   });
    
 });
-  
-
-
 
 //logout
 app.get('/logout', function(req, res) {
@@ -218,10 +226,7 @@ res.redirect('/login');
 
 });
 
-
-
 //session
-
 app.get('/sessionuser',function(req,res){
 
 console.log(req.session.uniqueId);
@@ -229,9 +234,6 @@ console.log(req.session.uniqueId);
 res.json({ message: req.session.uniqueId, message1: 'Hello World 1' });
     
 });
-
-
-
 
 //insert
 app.post('/create', function(req, res) {
@@ -271,6 +273,7 @@ MongoClient.connect(urldb, function(err, db) {
 });   
 
 });
+
 //delete
 app.post('/delete', function(req, res) {
 
@@ -289,12 +292,6 @@ MongoClient.connect(urldb, function(err, db) {
 });    
 
 });
-
-
-
-
-
-
 
 //admin
 //insert
@@ -315,6 +312,7 @@ MongoClient.connect(urldb, function(err, db) {
 });  
 
 });
+
 //read
 app.get('/readadmin', function(req, res, next) {
   //res.json({ message: 'Hello World', message1: 'Hello World 1' });
@@ -332,6 +330,7 @@ app.get('/readadmin', function(req, res, next) {
   });
    
 });
+
 //update
 app.post('/updateadmin', function(req, res) {
 
@@ -351,6 +350,7 @@ MongoClient.connect(urldb, function(err, db) {
 });   
 
 });
+
 //delete
 app.post('/deleteadmin', function(req, res) {
 
@@ -368,6 +368,69 @@ MongoClient.connect(urldb, function(err, db) {
   });
 });    
 
+});
+
+//insert
+app.post('/timer', function(req, res) {
+
+  var NAME=req.body.NAME;
+  var TIMMERCALL=req.body.TIMMERCALL;
+
+MongoClient.connect(urldb, function(err, db) {
+  if (err) throw err;
+  var myobj = { NAME: NAME, TIMMERCALL: TIMMERCALL };
+  db.collection("usertimer").insertOne(myobj, function(err, res) {
+    if (err) throw err;
+    console.log("1 document inserted");
+    db.close();
+  });
+});  
+
+});
+
+app.get('/usertimer', function(req, res, next) {
+  //res.json({ message: 'Hello World', message1: 'Hello World 1' });
+  
+MongoClient.connect(urldb, function(err, db) {
+  if (err) throw err;
+  db.collection("usertimer").find({}).toArray(function(err, result) {
+    if (err) throw err;
+    var myJsonString = JSON.stringify(result);
+	res.json(result);
+    db.close();
+  });
+});
+    
+});
+
+app.get('/useradmin', function(req, res, next) {
+  //res.json({ message: 'Hello World', message1: 'Hello World 1' });
+  
+MongoClient.connect(urldb, function(err, db) {
+  if (err) throw err;
+  db.collection("admin").find({}).toArray(function(err, result) {
+    if (err) throw err;
+    var myJsonString = JSON.stringify(result);
+	res.json(result);
+    db.close();
+  });
+});
+    
+});
+
+app.get('/useraddress', function(req, res, next) {
+  //res.json({ message: 'Hello World', message1: 'Hello World 1' });
+  
+MongoClient.connect(urldb, function(err, db) {
+  if (err) throw err;
+  db.collection("address").find({}).toArray(function(err, result) {
+    if (err) throw err;
+    var myJsonString = JSON.stringify(result);
+	res.json(result);
+    db.close();
+  });
+});
+    
 });
 
 app.get('/audio', function(req, res){
@@ -500,7 +563,56 @@ function runServer() {
 			
 
 
+			
+	//operation with database
+
+  MongoClient.connect(urldb, function(err, db) {
+  if (err) throw err;
+  //Sort the result by name:
+  var sort = { nama: 1 };
+  db.collection("admin").find().sort(sort).toArray(function(err, result) {
+    if (err) throw err;
+	var myJsonString = JSON.stringify(result);
+	//res.json(result);
+	socket.emit('phonebook', result);	
+	socket.emit('iduser', globalString);
+    db.close();
+  }); 
+  });  
+			
+			
+        socket.on('deletetelephone', function(data){			
+MongoClient.connect(urldb, function(err, db) {
+  if (err) throw err;
+  var myquery = { NAME: data };
+  db.collection("admin").deleteOne(myquery, function(err, obj) {
+    if (err) throw err;
+    console.log("1 document deleted");
+    db.close();
+  });
+}); 			
+			
+
 	
+		
+		});	
+
+
+
+        socket.on('submit', function(data){			
+		console.log(data);
+		});		
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+//operation sistem	
 	    try {
         socket.on('draw', function(data){
 		console.log("recibendo", data);
@@ -528,26 +640,20 @@ function runServer() {
 		});
                 } catch (e) {console.log("emit eror")}				
 				
-				
-				
-	
-	
 	    try {
                     socket.emit('welcome', "message pesan");
 					console.log("emit jalan")
                 } catch (e) {console.log("emit eror")}
 
-			
 			// Send Message
 socket.on('send message', function(data){
 	console.log("data send");
 	
-	                try {
+	            try {
                     socket.emit('new message', data);
 					console.log("emit jalan")
                 } catch (e) {console.log("emit eror")}
 		
-
 	});
 			
         } catch (e) {}
