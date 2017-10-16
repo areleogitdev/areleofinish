@@ -33,8 +33,7 @@
   body {
     color: #f3eded;
   }
-  </style>
-    <style>
+
 .chat{
 	width: auto;
 	hight: auto;
@@ -123,7 +122,7 @@
         </div>
         <div class="modal-body">
 		
-				  <table id="location1" class="table" style="color:#00001a;">
+					<table id="location1" class="table" style="color:#00001a;">
 					<thead>
 					  <tr align ="center">
 						<th>NAME</th>
@@ -134,7 +133,7 @@
 					<tbody>
 
 					</tbody>
-				  </table>
+					</table>
 				  
         </div>
         <div class="modal-footer">
@@ -281,7 +280,7 @@ $(document).ready(function(){
   //document.getElementById('open-room').style.visibility = 'visible';
 		console.log(data[1]);
 		document.getElementById("join-room").style.visibility = "visible";
-		
+		document.getElementById("room-id").value = data[0];
 		}
 
         }});
@@ -320,7 +319,7 @@ $(document).ready(function(){
 			
                 $("#location1 tbody").append(
 					'<td>'					 
-					+'<button style ="color:#380606" data-dismiss="modal" onclick="myFunction('+data+')">'+field+'</td>'
+					+'<button style ="color:#380606; background:white; border:none;" data-dismiss="modal" onclick="myFunction('+data+')">'+field+'</td>'
 					);
 				//console.log(field);
 			}else{
@@ -331,7 +330,7 @@ $(document).ready(function(){
 					+field 
 					+"</td>"
 					+"<td>"
-					+'<button onclick="deletephone('+data+')">Delete</button>' 
+					+'<button style ="color:#380606; background:white; border:none;" onclick="deletephone('+data+')">Delete</button>' 
 					+"</td>"
 					+"</tr>"
 					);
@@ -354,13 +353,10 @@ $(document).ready(function(){
                 connection.open(document.getElementById('room-id').value, function() {
                     showRoomURL(connection.sessionid);
                 });
-				
-				
-		datacall = document.getElementById("room-id").value;
-		
-		datacallnm = document.getElementById("callaudio").value;
-	
-	socket.emit('call', [datacall,datacallnm]);					
+						
+			datacall = document.getElementById("room-id").value;			
+			datacallnm = document.getElementById("callaudio").value;		
+			socket.emit('call', [datacall,datacallnm]);					
 				
 				
 				
@@ -371,6 +367,8 @@ $(document).ready(function(){
                 connection.join(document.getElementById('room-id').value);
             };
 
+			
+			
             document.getElementById('open-or-join-room').onclick = function() {
                 disableInputButtons();
                 connection.openOrJoin(document.getElementById('room-id').value, function(isRoomExists, roomid) {
@@ -400,8 +398,8 @@ $(document).ready(function(){
 				
 				namauser = document.getElementById('idusercall').value;
 
-                connection.send("<div class='chat'>"+namauser+"   : "+this.value+"</div>");
-                appendDIV("<div class='chat'>"+this.value+"   : "+namauser+"</div>");
+                connection.send("<div class='chat'><b><i>"+namauser+"</i></b>   : "+this.value+"</div>");
+                appendDIV("<div class='chat'>"+this.value+"   : <b><i>"+namauser+"</i></b></div>");
                 this.value = '';
             };
 

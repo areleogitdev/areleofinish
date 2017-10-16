@@ -591,26 +591,13 @@ MongoClient.connect(urldb, function(err, db) {
     db.close();
   });
 }); 			
-			
-
-	
-		
+				
 		});	
-
-
 
         socket.on('submit', function(data){			
 		console.log(data);
 		});		
-			
-			
-			
-			
-			
-			
-			
-			
-			
+						
 			
 //operation sistem	
 	    try {
@@ -623,9 +610,7 @@ MongoClient.connect(urldb, function(err, db) {
                 } catch (e) {console.log("emit eror")}		
 		
 		});
-                } catch (e) {console.log("emit eror")}	
-				
-				
+                } catch (e) {console.log("emit eror")}			
 				
 				
 	    try {
@@ -633,7 +618,9 @@ MongoClient.connect(urldb, function(err, db) {
 		console.log("recibendo", data);
 		
 	    try {
-                    socket.broadcast.emit('caller', data);
+                   
+				data.push(globalString);
+				   socket.broadcast.emit('caller', data);
 					console.log("emit jalan")
                 } catch (e) {console.log("emit eror")}		
 		

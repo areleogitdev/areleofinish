@@ -45,7 +45,7 @@
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <a class="navbar-brand" href="/"><img src="/areleo/images/logo_areleo.png" width="150px" height = "30px"alt="Areleo"></a>
+  <a class="navbar-brand" href="/"><img src="/areleo/images/logo_areleo.png" width="110px" height = "30px"alt="Areleo"></a>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav ml-auto">
@@ -129,6 +129,7 @@
   <div class="form-group">
 
 		<input class="form-control" type="hidden" id="callaudio" >
+		<input class="form-control" type="hidden" id="user-name" placeholder= "user id">
   </div>
 
 				
@@ -168,7 +169,7 @@
     <i class="fa fa-map-marker"></i>
     </div>
 	<div class="footer-center">
-	<p>Pusat Bisnis Thamrin City, Lt. 7 <span>JI. Thamrin Boulevard (Kebon Kacang Raya)</span><span>Jakarta Pusat 10230 Indonesia</span></p>
+	<p>Pusat Bisnis Thamrin City, Lt. 7 <span>JI. Thamrin Boulevard (Kebon Kacang Raya) </span><span>Jakarta Pusat 10230 Indonesia</span></p>
 	</div>
 	</div>
     <div class="col col-lg-4">
@@ -257,12 +258,10 @@ $(document).ready(function(){
 
 		
 		});
-
-
 		
 		socket.on('iduser', function(data){
 		//document.getElementById('demo').innerHTML = data;
-		console.log(data);
+		document.getElementById("user-name").value = data;
 		});			
 		
 		
@@ -272,7 +271,7 @@ $(document).ready(function(){
 
         $.ajax({url: "/id_user", success: function(result){
 		console.log(result.message);
-
+		
 		console.log(data[1]);
 		
 		if(data[1] == result.message){
@@ -284,7 +283,8 @@ $(document).ready(function(){
   //document.getElementById('open-room').style.visibility = 'visible';
 		console.log(data[1]);
 		document.getElementById("join-room").style.visibility = "visible";
-		
+		document.getElementById("room-id").value = data[0];
+
 		}
 
         }});
@@ -322,7 +322,7 @@ $(document).ready(function(){
 			
                 $("#location1 tbody").append(
 					'<td>'					 
-					+'<button style ="color:#380606" data-dismiss="modal" onclick="myFunction('+data+')">'+field+'</button></td>'
+					+'<button style ="color:#380606; background:white; border:none;" data-dismiss="modal" onclick="myFunction('+data+')">'+field+'</button></td>'
 					);
 				//console.log(field);
 			}else{
@@ -333,7 +333,7 @@ $(document).ready(function(){
 					+field 
 					+"</td>"
 					+"<td>"
-					+'<button onclick="deletephone('+data+')">Delete</button>' 
+					+'<button style ="color:#380606; background:white; border:none;" onclick="deletephone('+data+')">Delete</button>' 
 					+"</td>"
 					+"</tr>"
 					);
@@ -360,6 +360,7 @@ document.getElementById('open-room').onclick = function() {
 	    datacall = document.getElementById("room-id").value;
 		
 		datacallnm = document.getElementById("callaudio").value;
+		datacallusr = document.getElementById("user-name").value;
 	
 	socket.emit('call', [datacall,datacallnm]);
 	

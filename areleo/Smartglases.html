@@ -132,7 +132,7 @@
 					<tbody>
 
 					</tbody>
-				  </table>
+					</table>
         </div>
         <div class="modal-footer">
          
@@ -167,13 +167,7 @@
 
 
 
-    <article>
 
-
-			<img style="width:330px;height:330px;" id="smallImage" src="" />
-			<div id="canvasDiv" style ="background-color:rgba(0, 0, 0, 0); margin-top: -21px; " ></div>
-	
-    </article>
 	
 
 
@@ -188,6 +182,20 @@
 </div>
 
 
+
+
+  
+    <div class="menu-areleo-draw"> 
+
+
+			<img class="image-areleo-draw" id="smallImage" src="" />
+			<div id="canvasDiv" class="canvas-areleo-draw"></div>
+	
+    </div>
+
+	
+	
+	
 <div class="menu-areleo-footer"> 
 <div class="container">
   <div class="row">
@@ -290,6 +298,7 @@ $(document).ready(function(){
   //document.getElementById('open-room').style.visibility = 'visible';
 		console.log(data[1]);
 		document.getElementById("join-room").style.visibility = "visible";
+		document.getElementById("room-id").value = data[0];
 		
 		}
 
@@ -328,7 +337,7 @@ $(document).ready(function(){
 			
                 $("#location1 tbody").append(
 					'<td>'					 
-					+'<button style ="color:#380606" data-dismiss="modal" onclick="myFunction('+data+')">'+field+'</td>'
+					+'<button style ="color:#380606; background:white; border:none;" data-dismiss="modal" onclick="myFunction('+data+')">'+field+'</td>'
 					);
 				//console.log(field);
 			}else{
@@ -339,7 +348,7 @@ $(document).ready(function(){
 					+field 
 					+"</td>"
 					+"<td>"
-					+'<button onclick="deletephone('+data+')">Delete</button>' 
+					+'<button style ="color:#380606; background:white; border:none;" onclick="deletephone('+data+')">Delete</button>' 
 					+"</td>"
 					+"</tr>"
 					);

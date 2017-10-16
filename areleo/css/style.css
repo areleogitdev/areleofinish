@@ -128,8 +128,26 @@ text-align: center;
 }
 .menu-areleo{	
 	background: #04041d;
-	min-height: 150px;
+	min-height: 400px;
 }
+.menu-areleo-draw{
+background: #04041d;	
+}
+
+.image-areleo-draw{
+	
+width:330px;
+height:330px;
+margin-right: 35%;
+margin-left: 35%;
+	
+}
+.canvas-areleo-draw{
+background-color:rgba(0, 0, 0, 0); 
+margin-top: -17px;
+margin-right: 35%;
+margin-left: 35%;
+}	
 .menu-areleo-footer {
 	background: #030316;	
 }
@@ -159,6 +177,21 @@ span.icon-inp {
     font-size: 1em;
     position: absolute;
 }	
+
+.image-areleo-draw{
+	
+width:330px;
+height:330px;
+margin-right: 25%;
+margin-left: 25%;
+	
+}
+.canvas-areleo-draw{
+background-color:rgba(0, 0, 0, 0); 
+margin-top: -17px;
+margin-right: 25%;
+margin-left: 25%;
+}
 }
 @media (max-width: 991px) {
 span.icon-inp {
@@ -167,6 +200,20 @@ span.icon-inp {
 	color: #fff;
     font-size: 1em;
     position: absolute;
+}
+.image-areleo-draw{
+	
+width:330px;
+height:330px;
+margin-right: 15%;
+margin-left: 15%;
+	
+}
+.canvas-areleo-draw{
+background-color:rgba(0, 0, 0, 0); 
+margin-top: -17px;
+margin-right: 15%;
+margin-left: 15%;
 }	
 }
 
@@ -178,6 +225,21 @@ span.icon-inp {
     font-size: 1em;
     position: absolute;
 }	
+
+.image-areleo-draw{
+	
+width:330px;
+height:330px;
+margin-right: 5%;
+margin-left: 5%;
+	
+}
+.canvas-areleo-draw{
+background-color:rgba(0, 0, 0, 0); 
+margin-top: -17px;
+margin-right: 5%;
+margin-left: 5%;
+}
 }
 
 @media (max-width: 575px) {	
@@ -187,6 +249,20 @@ span.icon-inp {
 	color: #fff;
     font-size: 1em;
     position: absolute;
+}
+.image-areleo-draw{
+	
+width:330px;
+height:330px;
+margin-right: 0%;
+margin-left: 0%;
+	
+}
+.canvas-areleo-draw{
+background-color:rgba(0, 0, 0, 0); 
+margin-top: -17px;
+margin-right: 0%;
+margin-left: 0%;
 }
 }
 
