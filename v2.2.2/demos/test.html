@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <title>Simple login</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">  </script>
+<script>
+$(document).ready(function(){
+   
+        $.ajax({url: "/test", success: function(result){
+		
+		
+		for (var i=0; i<result.length; i++) {
+		
+		$.each(result[i], function(i, field){
+                $("#div1").append(field + " ");
+            });
+		
+
+}
+		
+		
+            
+			console.log(result);
+        }});
+    
+});
+</script>
+  </head>
+  <body>
+    <div id="div1"></div>
+  </body>
+</html>

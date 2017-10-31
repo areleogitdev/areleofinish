@@ -87,6 +87,17 @@ app.get('/smartglass',function(req,res){
     
 });
 
+app.get('/visualassistant',function(req,res){
+
+    if(typeof req.session.uniqueId == "undefined") {
+		console.log("Not Login");
+		res.redirect('/login');
+	}else {
+		res.sendfile("areleo/Smartglases.html");
+	}
+    
+});
+
 app.get('/chatsharing',function(req,res){
 
     if(typeof req.session.uniqueId == "undefined") {
@@ -97,9 +108,8 @@ app.get('/chatsharing',function(req,res){
 	}
     
 });
-
+//setting var global
 global.globalString = "yongky"; 
-
 
 app.post('/login', function(req, res) {
 
@@ -125,8 +135,7 @@ app.post('/login', function(req, res) {
             else{
                 console.log(result);
 				req.session.uniqueId = NAME;
-				
-				
+								
 				if(!req.session.uniqueId) {
 				console.log("Not Login");
 				res.redirect('/login');
@@ -185,9 +194,7 @@ app.get('/userdata', function(req, res, next) {
   //if (err) throw err;
   var query = { NAME: NAME };
   db.collection("login").find(query).toArray(function(err, result) {
-    console.log("data" + req.session.uniqueId +"data" );
-	
-	
+    console.log("data" + req.session.uniqueId +"data" );		
 	var myJsonString = JSON.stringify(result);
 	res.json(result);	
     db.close();

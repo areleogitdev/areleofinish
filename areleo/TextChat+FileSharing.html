@@ -38,9 +38,10 @@
 	width: auto;
 	hight: auto;
     padding: 10px;
-	background: #ffffff;
+	background: HoneyDew;
 	color: #ff751a;
     border: 5px solid gray;
+	border-radius: 15px 15px 15px 15px;
     margin: 0;
 
 }
@@ -75,27 +76,27 @@
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <a class="navbar-brand" href="/"><img src="/areleo/images/logo_areleo.png" width="150px" height = "30px"alt="Areleo"></a>
+  <a class="navbar-brand" href="/"><img src="/areleo/images/logo_areleo.png" width="35px" height = "35px"alt="Areleo"></a>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/rtc">Rtc</a>
       </li>	  
       <li class="nav-item">
-        <a class="nav-link" href="/smartglass">Smartglass</a>
+        <a class="nav-link" href="/visualassistant">Visual Assistant</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item active">
         <a class="nav-link" href="/chatsharing">Chat Sharing</a>
       </li>
     </ul>
   </div>
 </nav>
 </div>
-<div class="menu-areleo"> 
+<div class="menu-areleo-main"> 
 <div class="container">
   <div class="row">
     <div class="col col-lg-3">
@@ -117,7 +118,7 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <button type="button" style="color: Coral;" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Phonebook</h4>
         </div>
         <div class="modal-body">
@@ -143,20 +144,32 @@
     </div>
   </div>
   
+						<br>
+						<br>
+						<br>
+  <div class="form-group">
 
-		<input type="hidden" id="callaudio" >				
+		<input class="form-control" type="hidden" id="callaudio" >
+		<input class="form-control" type="hidden" id="user-name" placeholder= "user id">
+  </div>				
         
 			<p id="textcalling"></p>  
+				<p id="ringMode" style="color:red;"></p>
+
+				
+				<input type="hidden" id="dataOnline" value="notcall">	
                 <input type="hidden" id="room-id" value="abcdef">
 				<input type="hidden" id="idusercall">
-                <button style="color: #272222;background: #00ff00;" id="open-room">Calling</button>
-                <button style="color: #272222;background: #00ff00;" id="join-room">Accept</button>
-				<input type="button" style="color: #272222;background: #ff471a;" id="submit" value="Close">
+    <button style="color: #fffff;background: #3BCF15;border-radius: 25px 25px 25px 25px;border-color: #2D9B11;" class="btn btn-info btn-md" id="open-room"><i class="fa fa-phone" aria-hidden="true"></i> Calling</button>
+    <button style="color: #fffff;background: #3FDB18;border-radius: 25px 25px 25px 25px;border-color: #2C9212;" class="btn btn-info btn-md" id="join-room"><i class="fa fa-volume-control-phone" aria-hidden="true"></i> Accept</button>
+	<button style="color: #fffff;background: #ff471a;border-radius: 25px 25px 25px 25px;border-color: #CA3C19;" class="btn btn-info btn-md" id="submit" ><i class="fa fa-phone-square" aria-hidden="true"></i> Close</button>
                 <div id="open-or-join-room"></div>
-				
-            
-                <input type="text" style="color: #272222;" id="input-text-chat" placeholder="Enter Text Chat" disabled>
-                <button style="color: #272222;" id="share-file" disabled>Share File</button>
+				<br>
+				<div class="form-inline">
+                <input type="text" style="color: #272222;" id="input-text-chat" class="form-control mb-2 mr-sm-2 mb-sm-0" placeholder="Enter Text Chat" disabled>
+                <button style="color: #fff;" id="share-file" class="btn btn-info" disabled>Share File</button>
+				</div>
+				<br>
 
                 <div id="room-urls" style="text-align: center;display: none;background: #F1EDED;margin: 15px -10px;border: 1px solid rgb(189, 189, 189);border-left: 0;border-right: 0;"></div>
            
@@ -215,7 +228,7 @@
         <script src="/dist/RTCMultiConnection.min.js"></script>
         <script src="/socket.io/socket.io.js"></script>
 
-        <script src="https://cdn.webrtc-experiment.com:443/FileBufferReader.js"></script>
+        <script src="/areleo/js/FileBufferReader.js"></script>
 
         <script>
 //fungsi java biasa
@@ -273,10 +286,16 @@ $(document).ready(function(){
 		
 		if(data[1] == result.message){
 		
-		document.getElementById("textcalling").innerHTML = data[0]+" calling...!";
+		document.getElementById("textcalling").innerHTML ="<div class='alert alert-success'>" + data[0]+" calling ...!" + "</div>";
+		document.getElementById("ringMode").innerHTML = "<div class='alert alert-danger'>" + data[2]+" calling ...!" + "</div>";
+		dataOnline = document.getElementById("dataOnline").value;
+		
+		if(dataOnline=="notcall"){
 		
 		var audio = new Audio('/audio');
 		audio.play();
+		
+		}
   //document.getElementById('open-room').style.visibility = 'visible';
 		console.log(data[1]);
 		document.getElementById("join-room").style.visibility = "visible";
@@ -319,7 +338,7 @@ $(document).ready(function(){
 			
                 $("#location1 tbody").append(
 					'<td>'					 
-					+'<button style ="color:#380606; background:white; border:none;" data-dismiss="modal" onclick="myFunction('+data+')">'+field+'</td>'
+					+'<button style ="color:white;border-radius: 5px 5px 5px 5px; background:lime; border:none;" data-dismiss="modal" onclick="myFunction('+data+')">'+field+'   <i class="fa fa-phone" aria-hidden="true"></i>'+'</td>'
 					);
 				//console.log(field);
 			}else{
@@ -330,7 +349,7 @@ $(document).ready(function(){
 					+field 
 					+"</td>"
 					+"<td>"
-					+'<button style ="color:#380606; background:white; border:none;" onclick="deletephone('+data+')">Delete</button>' 
+					+'<button style ="color:white;border-radius: 5px 5px 5px 5px; background:red; border:none;" onclick="deletephone('+data+')"><i class="fa fa-times" aria-hidden="true"></i></button>'
 					+"</td>"
 					+"</tr>"
 					);
@@ -356,15 +375,23 @@ $(document).ready(function(){
 						
 			datacall = document.getElementById("room-id").value;			
 			datacallnm = document.getElementById("callaudio").value;		
-			socket.emit('call', [datacall,datacallnm]);					
+			socket.emit('call', [datacall,datacallnm,"Chat Sharing Mode"]);
+		
+		var myVaring = setInterval(myRing, 7000);
+		function myRing() {
+			datacallnm = document.getElementById("callaudio").value;
+			datacallusr = document.getElementById("user-name").value;
+			socket.emit('call', [datacall,datacallnm,"Chat Sharing Mode"]);
+		};				
 				
-				
+				document.getElementById("submit").style.visibility = "visible";				
 				
             };
 
             document.getElementById('join-room').onclick = function() {
                 disableInputButtons();
                 connection.join(document.getElementById('room-id').value);
+				document.getElementById("dataOnline").value="call";
             };
 
 			
@@ -399,7 +426,7 @@ $(document).ready(function(){
 				namauser = document.getElementById('idusercall').value;
 
                 connection.send("<div class='chat'><b><i>"+namauser+"</i></b>   : "+this.value+"</div>");
-                appendDIV("<div class='chat'>"+this.value+"   : <b><i>"+namauser+"</i></b></div>");
+                appendDIV("<div class='chat' style='text-align: right;'>"+this.value+"   : <b><i>"+namauser+"</i></b></div>");
                 this.value = '';
             };
 
@@ -477,7 +504,7 @@ $(document).ready(function(){
                 var roomQueryStringURL = '?roomid=' + roomid;
 
                 var html = '';
-                html += '';
+                html += '<div style="color:black;">Calling ..... '+roomid+'</div>';
 
                 var roomURLsDiv = document.getElementById('room-urls');
                 roomURLsDiv.innerHTML = html;

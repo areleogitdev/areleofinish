@@ -19,7 +19,7 @@ padding: 1.4em 0 0.7em 0;
 }
 
 .navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
-    color: #f4b400;
+    color: #ffff00;
 }
 
 #myBtn {
@@ -32,7 +32,7 @@ padding: 1.4em 0 0.7em 0;
   z-index: 99;
   border: none;
   outline: none;
-  background-color: #f4b400;
+  background-color: #ffff00;
   color: white;
   cursor: pointer;
   padding: 15px;
@@ -51,20 +51,22 @@ span.icon-inp {
 }
 .h1-inp {
 	text-align: center;
-	margin-top: 90px;
+	margin-top: 29px;
     margin-bottom: 15px;
-	color: #f4b400;
+	color: #ffff00;
 }
 .button-inp {
-border-radius: 25px 25px 25px 25px;
-background: #f4b400;
-border-color: #f4b400;
-
+	width: 29%;
+	border-radius: 25px 25px 25px 25px;
+	background: #ffff00;
+	border-color: #f9f906;
+	color: #04041d;
+	/*float:left;*/
 }
 .button-inp:hover {
     color: #fff;
-    background-color: #f4b400;
-    border-color: #f4b400;
+    background-color: #ffff00;
+    border-color: #ffff00;
 }
 .btn-plus {
 	width: 60px;
@@ -80,8 +82,8 @@ border-color: #f4b400;
 	width: 60px;
 	height: 60px;
 	border-radius: 50%;
-	border-color: #f4b400;
-	background: #f4b400;
+	border-color: #ffff00;
+	background: #ffff00;
 	color: #fff;
 	margin: 30px auto 1em;
 	text-align: center;
@@ -107,12 +109,13 @@ border-color: #f4b400;
 }
 
 .input-fa {
-	width: auto;
+	width: 90%;
     outline: none;
-    border: 1px solid #f4b400;
-    background: none;
+	border: rgba(255,255,255,0.3);
+	background: rgba(255,255,255,0.3);
     color: #fff;
     padding: 1em 0 1em 2em;
+	border-radius: 25px 25px 25px 25px;	
 }
 
 .footer-center{
@@ -124,14 +127,28 @@ text-align: center;
 
 
 .footer-center{
-text-align: center;		
+text-align: center;	
+/*font-family: Lucida Sans Unicode;*/
+color: #fff;
+font-size: 91%;	
 }
 .menu-areleo{	
 	background: #04041d;
-	min-height: 400px;
+	min-height: 490px;
+}
+.menu-areleo-login{	
+	background-image: url("../images/loginimg.jpg");
+	min-height: 490px;
+}
+.menu-areleo-main{	
+	background-image: url("../images/mainimg.jpg");
+	min-height: 490px;
+	background-size: 100% 100%;
 }
 .menu-areleo-draw{
-background: #04041d;	
+	background-image: url("../images/mainimg.jpg");
+	min-height: 300px;
+	background-size: 100% 100%;	
 }
 
 .image-areleo-draw{
@@ -155,7 +172,7 @@ margin-left: 35%;
 	width: 60px;
 	height: 60px;
 	border-radius: 50%;	
-	background: #f4b400;
+	background: #ffff00;
 	color: #fffff;
 	margin: 30px auto 1em;
 	text-align: center;
@@ -165,7 +182,7 @@ margin-left: 35%;
   color: white;
 }
 
-
+/*e9f123*/
 
 
 
@@ -195,7 +212,7 @@ margin-left: 25%;
 }
 @media (max-width: 991px) {
 span.icon-inp {
-    right: 85%;
+    right: 92%;
 	padding: 1em 0 0 0;
 	color: #fff;
     font-size: 1em;
@@ -219,7 +236,7 @@ margin-left: 15%;
 
 @media (max-width: 767px) {
 span.icon-inp {
-    right: 85%;
+    right: 91%;
 	padding: 1em 0 0 0;
 	color: #fff;
     font-size: 1em;
@@ -244,7 +261,7 @@ margin-left: 5%;
 
 @media (max-width: 575px) {	
 span.icon-inp {
-    right: 85%;
+    right: 77%;
 	padding: 1em 0 0 0;
 	color: #fff;
     font-size: 1em;
