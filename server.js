@@ -440,6 +440,45 @@ MongoClient.connect(urldb, function(err, db) {
     
 });
 
+//Calllog
+app.get('/calllog', function(req, res, next) {
+  //res.json({ message: 'Hello World', message1: 'Hello World 1' });
+  
+  //res.json({ message: 'Hello World', message1: 'Hello World 1' });
+		NAME = globalString;
+		//console.log(NAME);
+  MongoClient.connect(urldb, function(err, db) {
+  //if (err) throw err;
+  var query = { NAME: NAME };
+  db.collection("usertimer").find(query).toArray(function(err, result) {
+   // console.log("data" + req.session.uniqueId +"data" );		
+	var myJsonString = JSON.stringify(result);
+	res.json(result);	
+    db.close();
+  });
+});
+
+   
+});
+//insert
+app.post('/newuser', function(req, res) {
+
+  var NAME=req.body.NAME;
+  var PASSWORD=req.body.PASSWORD;
+  var ADDRESS=req.body.ADDRESS;
+
+MongoClient.connect(urldb, function(err, db) {
+  if (err) throw err;
+  var myobj = { NAME: NAME, PASSWORD: PASSWORD, ADDRESS: ADDRESS };
+  db.collection("login").insertOne(myobj, function(err, res) {
+    if (err) throw err;
+    console.log("1 document inserted");
+    db.close();
+  });
+});  
+
+});
+
 app.get('/audio', function(req, res){
     console.log("send file wav")
 
@@ -586,6 +625,22 @@ function runServer() {
     db.close();
   }); 
   });  
+  
+    MongoClient.connect(urldb, function(err, db) {
+  if (err) throw err;
+  //Sort the result by name:
+  var sort = { NAME: 1 };
+  db.collection("usertimer").find().sort(sort).toArray(function(err, result) {
+    if (err) throw err;
+	var myJsonString = JSON.stringify(result);
+	//res.json(result);
+	socket.emit('calllog', result);	
+	//socket.emit('iduser', globalString);
+    db.close();
+  }); 
+  });
+
+
 			
 			
         socket.on('deletetelephone', function(data){			

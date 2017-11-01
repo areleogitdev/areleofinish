@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="/areleo/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/areleo/css/style.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Ubuntu:regular,bold&subset=Latin">	
  
     <!-- jQuery first, then Tether, then Bootstrap JS. -->
     <!-- jQuery first, then Tether, then Bootstrap JS. -->
@@ -66,7 +67,7 @@
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <a class="navbar-brand" href="/"><img src="/areleo/images/logo_areleo.png" width="35px" height = "35px"alt="Areleo"></a>
+  <a class="navbar-brand" style="margin-top: -15px;" href="/"><img src="/areleo/images/logo_areleo.png" height = "75px"alt="Areleo"></a>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav ml-auto">
@@ -74,14 +75,11 @@
         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/rtc">Rtc</a>
+        <a class="nav-link" href="/rtc">Video Conference</a>
       </li>	  
-      <li class="nav-item active">
-        <a class="nav-link" href="/visualassistant">Visual Assistant</a>
-      </li>
       <li class="nav-item">
-        <a class="nav-link" href="/chatsharing">Chat Sharing</a>
-      </li>
+        <a class="nav-link" href="/logout">Logout</a>
+      </li>	  
     </ul>
   </div>
 </nav>
@@ -102,8 +100,13 @@
 					</div>
 				</a>
 				<button type="button" align= "center" class="btn-circle" data-toggle="modal" data-target="#myModal"><i class="fa fa-address-book" aria-hidden="true"></i></button>
-
-				<div id= "server-on" class="btn-on"><i class="fa fa-podcast" aria-hidden="true"></i></div>
+				
+				<button type="button" align= "center" class="btn-circle-call" data-toggle="modal" data-target="#myModalcall"><i class="fa fa-user-o" aria-hidden="true"></i></button>
+				
+				<a href="/visualassistant" class="btn-circle-viscol" class="btn btn-picture-o" role="button"><i class="fa fa-file-image-o" aria-hidden="true"></i></a>
+				
+				<a href="/chatsharing" class="btn-circle-chatshr" class="btn btn-info" role="button"><i class="fa fa-comments-o" aria-hidden="true"></i></a>
+				<div id= "server-on" class="btn-on"><i class="fa fa-podcast" aria-hidden="true"></i></div>				
 				</div>	     
     </div>
     <div class="col col-lg-7">	
@@ -140,6 +143,38 @@
       </div>
     </div>
   </div>
+  
+  
+  
+  
+  <!-- Modal -->
+  <div class="modal fade" id="myModalcall" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" style="color: Coral;" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Call log</h4>
+        </div>
+        <div class="modal-body">
+		
+					<table id="location2" class="table" style="color:#00001a;">
+					<thead>
+					  <tr align ="center">
+						<th>NAME</th>
+						<th style="color:#00001a;">TIME</th>
+					  </tr>
+					</thead>
+					<tbody>
+
+					</tbody>
+					</table>
+        </div>
+        <div class="modal-footer">
+         
+        </div>
+      </div>
+    </div>
+  </div> 
 
 						<br>
 						<br>
@@ -375,7 +410,52 @@ $(document).ready(function(){
 				
         });
 
-        }});		
+        }});
+
+
+        $.ajax({url: "/calllog", success: function(result){
+		console.log(result);
+
+		$.each(result, function(i, j){
+		
+			$.each(j, function(k, field){
+			if(k == "_id"){
+					$("#location2 tbody").append(
+					'<tr>'
+					+''
+					+field 
+					+''
+					);
+			}
+			else if(k == "NAME"){
+				data = "'" +field+ "'";
+			
+                $("#location2 tbody").append(
+					'<td>'					 
+					+field+'</td>'
+					);
+				//console.log(field);
+			}else{
+			
+			
+                $("#location2 tbody").append(
+					"<td>"
+					+field 
+					+"</td>"
+					+
+					+"</tr>"
+					);
+				//console.log(field);
+			}	
+			
+				
+            });	
+				
+        });
+
+        }});
+
+		
 		
             // ......................................................
             // .......................UI Code........................

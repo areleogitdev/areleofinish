@@ -91,6 +91,48 @@ span.icon-inp {
     align-items: center;
     justify-content: center;
 	padding: 1em;	
+} 
+.btn-circle-call {
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+	border-color: #2626d9;
+	background: #2626d9;
+	color: #fff;
+	margin: 30px auto 1em;
+	text-align: center;
+	display: flex;
+    align-items: center;
+    justify-content: center;
+	padding: 1em;	
+}
+.btn-circle-viscol {
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+	border-color: OrangeRed;
+	background: OrangeRed;
+	color: #fff;
+	margin: 30px auto 1em;
+	text-align: center;
+	display: flex;
+    align-items: center;
+    justify-content: center;
+	padding: 1em;	
+}
+.btn-circle-chatshr {
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+	border-color: Lime;
+	background: Lime;
+	color: #fff;
+	margin: 30px auto 1em;
+	text-align: center;
+	display: flex;
+    align-items: center;
+    justify-content: center;
+	padding: 1em;	
 }
 .btn-on {
 	width: 60px;
