@@ -135,14 +135,11 @@ span.icon-inp {
 	padding: 1em;	
 }
 .btn-on {
-	width: 60px;
-	height: 60px;
+	width: 30px;
+	height: 30px;
 	border-radius: 50%;	
 	background: #000000;
 	color: #fff;
-	margin: 30px auto 1em;
-	text-align: center;
-	padding: 1em;
 }
 .button-inp-log {
 	text-align: center;
@@ -174,6 +171,9 @@ text-align: center;
 color: #fff;
 font-size: 91%;	
 }
+.menu-areleo-up{	
+	background: #04041d;
+}
 .menu-areleo{	
 	background: #04041d;
 	min-height: 490px;
@@ -188,7 +188,7 @@ font-size: 91%;
 	background-size: 100% 100%;
 }
 .menu-areleo-draw{
-	background-image: url("../images/mainimg.jpg");
+	background: #04041d;
 	min-height: 300px;
 	background-size: 100% 100%;	
 }

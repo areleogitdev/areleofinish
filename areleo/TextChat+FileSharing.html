@@ -35,6 +35,7 @@
     color: #f3eded;
   }
 
+
 .chat{
 	width: auto;
 	hight: auto;
@@ -67,52 +68,129 @@
             text-align: center;
             padding: 5px 10px;
         }
-    </style>
+  
+  /* The side navigation menu */
+.sidenav {
+    height: 40%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0;
+    left: 0;
+    background-color: white; /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.7s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+/* The navigation menu links */
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 14px;
+	font-weight: bold;
+    color: #404E67;
+    display: block;
+    transition: 0.3s
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover, .offcanvas a:focus{
+    color: #yellow;
+}
+
+/* Position and style the close button (top right corner) */
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 14px;
+    margin-left: 50px;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+    transition: margin-left .5s;
+    padding: 20px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 14px;}
+}  
+  
+  </style>
 
 </head>
 
 <body>
-<div class="container">
-  <nav class="navbar navbar-toggleable-md navbar-light navbar-head">
-  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <a class="navbar-brand" style="margin-top: -15px;" href="/"><img src="/areleo/images/logo_areleo.png" height = "75px"alt="Areleo"></a>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/rtc">Video Conference</a>
-      </li>	  
-      <li class="nav-item">
-        <a class="nav-link" href="/logout">Logout</a>
-      </li>	  
-    </ul>
-  </div>
-</nav>
+ <div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <h5 style="color:#404E67;margin-left:32px;">SERVICES</h5>
+  <a href="/rtc"><i class="fa fa-television" style="color:#404E67" aria-hidden="true"></i> Video Conference</a>
+  <a href="areleo/schedule.html"><i class="fa fa-television" style="color:#404E67" aria-hidden="true"></i> Schedule</a>
+  <a href="areleo/report.html"><i class="fa fa-line-chart" style="color:#404E67" aria-hidden="true"></i> Report</a>
 </div>
-<div class="menu-areleo-main"> 
+
+<div class="menu-areleo-up"> 
 <div class="container">
   <div class="row">
-    <div class="col col-lg-3">
-      			<div class="col col-lg-12">
-				<a href="/create">
-					<div class="btn-plus">
-						<i class="fa fa-user-plus" aria-hidden="true"></i>
-					</div>
-				</a>
-				<button type="button" align= "center" class="btn-circle" data-toggle="modal" data-target="#myModal"><i class="fa fa-address-book" aria-hidden="true"></i></button>
-				
-				<button type="button" align= "center" class="btn-circle-call" data-toggle="modal" data-target="#myModalcall"><i class="fa fa-user-o" aria-hidden="true"></i></button>
-				
-				<a href="/visualassistant" class="btn-circle-viscol" class="btn btn-picture-o" role="button"><i class="fa fa-file-image-o" aria-hidden="true"></i></a>
-				
-				<a href="/chatsharing" class="btn-circle-chatshr" class="btn btn-info" role="button"><i class="fa fa-comments-o" aria-hidden="true"></i></a>
-				<div id= "server-on" class="btn-on"><i class="fa fa-podcast" aria-hidden="true"></i></div>
-				</div>      
+
+<span style="font-size:27px;cursor:pointer color: black;margin:5px 20px 0px 0px;padding-top:0px;" onclick="openNav()">&#9776;</span>
+ <a href="/" role="button" style="margin:15px 5px 0px 5px;"><i class="fa fa-user-o fa-lg" aria-hidden="true"></i></a>
+ <a href="/rtc" role="button" style="margin:15px 5px 0px 5px;"><i class="fa fa-video-camera fa-lg" aria-hidden="true"></i></a>
+ <a href="/visualassistant" role="button" style="margin:15px 5px 0px 5px;"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
+ <a href="/chatsharing" role="button" style="margin:15px 5px 0px 5px;"><i class="fa fa-comments-o fa-lg" aria-hidden="true"></i></a>
+
+
+
+<img src="/areleo/images/logo_light.png" style="margin:auto; margin-top: 15px;margin-bottom: 11px;display:block" height = "35px" alt="Areleo">
+<div id= "server-on" class="btn-on" style="position: absolute; top: 15px;right: 95px;" ><center><i class="fa fa-wifi" style="margin-top:5px;"aria-hidden="true"></i></center></div>
+<a href="/logout" role="button" style="float:right;margin-top: 15px;color:white;">Logout</a>
+
+
+
+	</div>
+</div>
+</div>
+<div class="menu-areleo"> 
+<div class="container-fluid">
+  <div class="row">
+    <div class="col col-lg-5">
+	<h4 style="color:#ffff00;margin : 51px 0px 25px">CHAT SHARING</h4>
+					<table id="location1" class="table" style="color:#00001a;background-color:white;">
+					<thead>
+					  <tr align ="center">
+						<th>NAME</th>
+						<th style="color:#00001a;">TELEPHONE</th>
+						<th style="color:#00001a;"></th>
+					  </tr>
+					</thead>
+					<tbody>
+
+					</tbody>
+					</table>
+					
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+			<br>
+		<br>
+		<br>
+		<br>	
+		
+				<br>
+			<br>
+
+		<br>	
+		
+ <p class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2"><span class="float-md-left d-xs-block d-md-inline-block">Copyright  &copy; 2017 <a href="https://areleo.com" target="_blank" class="text-bold-800 grey darken-2">areleo </a>, All rights reserved. </span></p>		
+
+		      
     </div>
     <div class="col col-lg-7">
 
@@ -176,12 +254,7 @@
       </div>
     </div>
   </div>  
-  
-  
-  
-						<br>
-						<br>
-						<br>
+
   <div class="form-group">
 
 		<input class="form-control" type="hidden" id="callaudio" >
@@ -214,51 +287,27 @@
                 <div class="chat-output"></div>
             </div>
         </section>
+		<br>
 		
-		
+						<table id="location2" class="table" style="color:#00001a;background-color:white;">
+					<thead>
+					  <tr align ="center">
+						<th>NAME</th>
+						<th style="color:#00001a;">TIME</th>
+					  </tr>
+					</thead>
+					<tbody>
+
+					</tbody>
+					</table>	
 				
 
 	</div>
-    <div class="col col-lg-2">
-      
-    </div>
 	
   </div>
 </div> 
 </div>
-
-
-<div class="menu-areleo-footer"> 
-<div class="container">
-  <div class="row">
-    <div class="col col-lg-4">
-	<div class="footer_griph">
-    <i class="fa fa-map-marker"></i>
-    </div>
-	<div class="footer-center">
-	<p>Pusat Bisnis Thamrin City, Lt. 7 <span>JI. Thamrin Boulevard (Kebon Kacang Raya)</span><span>Jakarta Pusat 10230 Indonesia</span></p>
-	</div>
-	</div>
-    <div class="col col-lg-4">
 	
-	<div class="footer_griph">
-    <i class="fa fa-phone-square"></i>
-    </div>
-	<div class="footer-center">
-	<p>Phone:+62 21 29558688  <span>Fax: +62 21 2955 8690</span></p>
-	</div>
-    </div>
-    <div class="col col-lg-4">
-    <div class="footer_griph">
-    <i class="fa fa-envelope-o"></i>
-    </div> 
-	<div class="footer-center">
-	<p><a href="mailto:support@areleo.com">support@areleo.com</a></p>
-	</div>	
-    </div>
-  </div>
-</div>
-</div>		
 		
         <script src="/dist/RTCMultiConnection.min.js"></script>
         <script src="/socket.io/socket.io.js"></script>
@@ -267,6 +316,18 @@
 
         <script>
 //fungsi java biasa
+
+
+/* Set the width of the side navigation to 250px */
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+}
+
+/* Set the width of the side navigation to 0 */
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+} 
+
 	var socket = io.connect();
 function myFunction(data) {
     document.getElementById("callaudio").value = data;
@@ -583,7 +644,7 @@ $(document).ready(function(){
                 var roomQueryStringURL = '?roomid=' + roomid;
 
                 var html = '';
-                html += '<div style="color:black;">Calling ..... '+roomid+'</div>';
+                html += '<div style="color:black;">Calling ..... '+''+'</div>';
 
                 var roomURLsDiv = document.getElementById('room-urls');
                 roomURLsDiv.innerHTML = html;
