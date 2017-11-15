@@ -726,7 +726,6 @@ connection.sdpConstraints.mandatory = {
                 btnStopRecording.disabled = true;
                 
                 recorder.stopRecording(postFiles);
-				recorderrev.stopRecording(postFiles);
             };
 			
 			
@@ -737,7 +736,6 @@ connection.sdpConstraints.mandatory = {
             };
 var screensize = "false";
 var recorder;
-var recorderrev;
 connection.videosContainer = document.getElementById('videos-container');
 connection.onstream = function(event) {
 
@@ -752,10 +750,7 @@ connection.onstream = function(event) {
     }
 
     if (event.type === 'remote') {
-        recorderrev = RecordRTC([event.stream], {
-            type: 'video'
-        });
-        recorderrev.startRecording();
+        recorder.addStreams([event.stream]);
     }
 
 

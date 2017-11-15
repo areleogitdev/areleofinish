@@ -65,6 +65,17 @@ try {
 var server = require(isUseHTTPs ? 'https' : 'http');
 var url = require('url');
 
+
+
+
+
+
+
+
+
+
+
+
 app.get('/rtc',function(req,res){
 
     if(typeof req.session.uniqueId == "undefined") {
@@ -556,7 +567,113 @@ function runServer() {
             setTimeout(log_console, 250);
         }
     });
+	
+	
+	
 
+	
+	
+	
+	
+	
+// Upload route.
+app.post('/uploadFile', function(request, response) {
+
+
+
+
+
+	
+	
+	
+	
+    // parse a file upload
+    var mime = require('mime');
+    var formidable = require('formidable');
+    var util = require('util');
+
+    var form = new formidable.IncomingForm();
+
+    var dir = !!process.platform.match(/^win/) ? '\\uploads\\' : '/uploads/';
+
+    form.uploadDir = __dirname + dir;
+    form.keepExtensions = true;
+    form.maxFieldsSize = 10 * 1024 * 1024;
+    form.maxFields = 1000;
+    form.multiples = false;
+
+    form.parse(request, function(err, fields, files) {
+        var file = util.inspect(files);
+
+        response.writeHead(200, getHeaders('Content-Type', 'application/json'));
+
+        var fileName = file.split('path:')[1].split('\',')[0].split(dir)[1].toString().replace(/\\/g, '').replace(/\//g, '');
+        var fileURL = 'http://' + app.address + ':' + port + '/uploads/' + fileName;
+
+        console.log('fileURL: ', fileURL);
+        response.write(JSON.stringify({
+            fileURL: fileURL
+        }));
+        response.end();
+    });
+	
+	
+function getHeaders(opt, val) {
+    try {
+        var headers = {};
+        headers["Access-Control-Allow-Origin"] = "https://secure.seedocnow.com";
+        headers["Access-Control-Allow-Methods"] = "POST, GET, PUT, DELETE, OPTIONS";
+        headers["Access-Control-Allow-Credentials"] = true;
+        headers["Access-Control-Max-Age"] = '86400'; // 24 hours
+        headers["Access-Control-Allow-Headers"] = "X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept";
+
+        if (opt) {
+            headers[opt] = val;
+        }
+
+        return headers;
+    } catch (e) {
+        return {};
+    }
+}	
+	
+
+
+	
+});	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	//app = server.createServer(serverHandler);
     app = app.listen(port, process.env.IP || '0.0.0.0', function(error) {
         var addr = app.address();
 
